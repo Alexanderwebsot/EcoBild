@@ -1,4 +1,23 @@
 $(document).ready(function () {
+
+  if ($(window).width() <= '450'){
+    $('.reviews-block').unwrap()
+    $('.novelties-row').slick({
+      infinite: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      speed: 700,
+      variableWidth: true,
+    })
+  }
+  
+  $('.mobile-nav__burger').on('click', function() {
+    $('html').toggleClass('html-overflow');
+    $('.nav').toggleClass('nav-fixed');
+    return false;
+  })
+
   $(".scroll-to").on("click", function (event) {
     event.preventDefault();
     let id  = $(this).attr('href'),
@@ -99,7 +118,7 @@ $(document).ready(function () {
     $(parent).toggleClass('catalog-catagory__item_active');
   })
  
-  let reviews_count = $('.reviews-slide').length;
+  let reviews_count = $('.reviews-slider .slick-slide').length;
   $('.counter_all').text(reviews_count);
 
   $('.reviews-slider').on('afterChange', function(event, slick, currentSlide) {
@@ -117,4 +136,6 @@ $(document).ready(function () {
   })
 
   $(".phone").mask("+7 (999) 999-9999");
+
+  
 })
